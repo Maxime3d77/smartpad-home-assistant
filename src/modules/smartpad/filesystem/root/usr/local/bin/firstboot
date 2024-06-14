@@ -22,9 +22,7 @@ RESOLUTION=(20 60)
 #change active tty
 chvt 2
 
-if [[ "$(systemctl is-active KlipperScreen.service)" = "active" ]]; then
-    systemctl stop KlipperScreen.service &>/dev/null
-fi
+
 
 welcome_msg() {
     cat << EOF
@@ -54,9 +52,6 @@ gen_initramfs() {
     update-initramfs -u &>/dev/null
 }
 
-enable_ks() {
-    systemctl --quiet enable KlipperScreen.service &>/dev/null
-}
 
 disable_firstboot() {
     systemctl --quiet disable firstboot.service &>/dev/null
@@ -76,9 +71,6 @@ fi
 
 # Update initramfs
 gen_initramfs | "${DIALOG[@]}" --clear --gauge "Generate Initial RAM filesystem ..." "${RESOLUTION[@]}" 20
-
-# enable KlipperScreen
-enable_ks | "${DIALOG[@]}" --clear --gauge "Enable KLipperScreen ..." "${RESOLUTION[@]}" 80
 
 # disable firstboot service
 disable_firstboot | "${DIALOG[@]}" --clear --gauge "Disable firstboot service ..." "${RESOLUTION[@]}" 90
