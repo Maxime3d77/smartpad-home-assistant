@@ -29,7 +29,7 @@ echo_green "Install Docker Home Assistant..."
 SCRIPT_PATH="/home/pi/install.sh"
 
 # Création du script install.sh
-cat << 'EOF' > $SCRIPT_PATH
+cat << 'EOF' > ${SCRIPT_PATH}
 #!/bin/bash
 
 # Mise à jour du systeme
@@ -127,9 +127,9 @@ echo "Installation terminée."
 EOF
 
 # Rendre le script exécutable
-chmod +x $SCRIPT_PATH
+chmod +x chmod +x ${SCRIPT_PATH}
 
 # Exécuter le script
-$SCRIPT_PATH
+${SCRIPT_PATH}
 
 echo_green "Install Docker Home Assistant...(DONE)"
