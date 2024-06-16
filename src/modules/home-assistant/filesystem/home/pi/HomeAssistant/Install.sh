@@ -60,7 +60,7 @@ else
 fi
 
 # Exécutez la commande pour générer le mot de passe htpasswd
-HTPASSWD=$(docker run --rm httpd:2.4-alpine htpasswd -nbB admin "portainer_root" | cut -d ":" -f 2)
+#HTPASSWD=$(docker run --rm httpd:2.4-alpine htpasswd -nbB admin "portainer_root" | cut -d ":" -f 2)
 docker stop portainer
 #docker run -d -p 9443:9443 -p 8000:8000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer-ce:latest --admin-password=$HTPASSWD
 docker run -d -p 9443:9443 -p 8000:8000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer-ce:latest --admin="***"
