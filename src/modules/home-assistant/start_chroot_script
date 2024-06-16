@@ -25,11 +25,9 @@ echo_green "Install Docker Home Assistant..."
 #sudo chmod +x /home/pi/HomeAssistant/install.sh
 #sudo ./home/pi/HomeAssistant/install.sh
 
-# Chemin du script à créer
-SCRIPT_PATH="/home/pi/install.sh"
 
 # Création du script install.sh
-cat << 'EOF' > ${SCRIPT_PATH}
+cat << 'EOF' > /home/pi/install.sh
 #!/bin/bash
 
 # Mise à jour du systeme
@@ -127,9 +125,9 @@ echo "Installation terminée."
 EOF
 
 # Rendre le script exécutable
-chmod +x chmod +x ${SCRIPT_PATH}
+chmod +x chmod +x /home/pi/install.sh
 
 # Exécuter le script
-${SCRIPT_PATH}
+./home/pi/install.sh
 
 echo_green "Install Docker Home Assistant...(DONE)"
