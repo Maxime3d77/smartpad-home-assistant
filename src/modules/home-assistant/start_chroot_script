@@ -17,24 +17,7 @@ set -Ee
 source /common.sh
 install_cleanup_trap
 
-echo_green "Install Docker ..."
-curl -sSL https://get.docker.com | sh
-sudo usermod -aG docker "${BASE_USER}"
-echo_green "Install Docker ...(DONE)"
-echo_green "Install lib ..."
-sudo apt install libffi-dev libssl-dev python3-dev -y
-sudo apt install python3 python3-pip -y
-sudo pip3 install docker-compose --break-system-packages
-echo_green "Install lib ...(DONE)"
-echo_green "Enable Docker ..."
-sudo systemctl enable docker
-echo_green "Enable Docker ...(DONE)"
-echo_green "Create Folder ..."
-mkdir docker
-cd docker
-mkdir homeAssistant
-cd homeAssistant
-echo_green "Create Folder ...(DONE)"
-echo_green "Compose Home Assistant ..."
-sudo docker-compose up -d
-echo_green "Compose Home Assistant ...(DONE)"
+echo_green "Install Docker Home Assistant..."
+sudo chmod +x /home/pi/HomeAssistant/install.sh
+sudo ./home/pi/HomeAssistant/install.sh
+echo_green "Install Docker Home Assistant...(DONE)"
