@@ -24,7 +24,7 @@ install_cleanup_trap
 echo_green "Install Docker Home Assistant..."
 
 # Création du script install.sh
-cat << 'EOF' > /home/pi/install.sh
+#cat << 'EOF' > /home/pi/install.sh
 #!/bin/bash
 
 # Mise à jour du systeme
@@ -120,9 +120,9 @@ echo "Installation terminée."
 EOF
 
 # Rendre le script exécutable
-sudo chmod +x /home/pi/install.sh
+#sudo chmod +x /home/pi/install.sh
 
 # Exécuter le script
-sudo ./home/pi/install.sh
+#sudo ./home/pi/install.sh
 
 echo_green "Install Docker Home Assistant...(DONE)"
