@@ -122,7 +122,7 @@ echo "Installation terminée."
 EOF
 
 # Rendre le script exécutable
-sudo chmod +x chmod +x /home/pi/install.sh
+sudo chmod +x /home/pi/install.sh
 
 # Exécuter le script
 sudo ./home/pi/install.sh
