@@ -70,7 +70,7 @@ echo "Installation de Portainer..."
 # Créer le volume pour Portainer
 echo "Création du volume pour Portainer..."
 sudo groupadd -f docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker "${USER}"
 systemctl start docker
 docker volume create portainer_data
 
