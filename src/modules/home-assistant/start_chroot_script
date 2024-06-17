@@ -69,6 +69,7 @@ fi
 echo "Installation de Portainer..."
 # Créer le volume pour Portainer
 echo "Création du volume pour Portainer..."
+systemctl start docker
 docker volume create portainer_data
 
 # Télécharger et installer le conteneur Portainer Server
