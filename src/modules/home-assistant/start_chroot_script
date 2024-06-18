@@ -65,15 +65,20 @@ else
     fi
 fi
 
-# Installation de Portainer
-echo "Prepare Docker..."
+# Check Docker
+echo "Check Docker..."
+sudo systemctl status docker
 sudo systemctl start docker
+sudo usermod -aG docker $USER
+ls -l /var/run/docker.sock
+
 
 # Installation de Portainer
 echo "Installation de Portainer..."
 # Créer le volume pour Portainer
 echo "Création du volume pour Portainer..."
 docker volume create portainer_data
+sleep 5
 
 # Télécharger et installer le conteneur Portainer Server
 echo "Installation de Portainer Server..."
@@ -81,6 +86,7 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
 
 # Vérifier si le conteneur Portainer Server a démarré
 echo "Vérification de l'installation de Portainer Server..."
+sleep 5
 if docker ps | grep -q portainer; then
   echo "Portainer Server a été installé avec succès."
 else
