@@ -20,51 +20,13 @@ install_cleanup_trap
 #echo_green "Move script..."
 #unpack /filesystem/home/pi/
 #echo_green "Move script...(DONE)"
+echo_green "Unpack file..."
+echo_green "Install KlipperScreen preconfiguration..."
+unpack /filesystem/home/"${BASE_USER}" /home/"${BASE_USER}" "${BASE_USER}"
+echo_green "Unpack file...(DONE)"
 
 echo_green "Install Docker Home Assistant..."
-
-# Création du script install.sh
-#cat << 'EOF' > /home/pi/install.sh
-#!/bin/bash
-
-# Mise à jour du systeme
-sudo apt update && sudo apt upgrade -y
-
-# Docker Installation
-echo "1. Installation de Docker..."
-sudo apt-get install -y docker.io
-echo "1. Installation de Docker Compose Plugin..."
-sudo apt-get install -y docker-compose-plugin
-
-
-# preparation pour Home Assistant
-sudo adduser --system --group homeassistant
-sudo mkdir -p /home/homeassistant/.homeassistant
-sudo chown -R homeassistant:homeassistant /home/homeassistant/.homeassistant
-cd /home/homeassistant
-cat <<'EOF' >> compose.yml
-version: '3'
-services:
-  homeassistant:
-    container_name: home-assistant
-    image: "ghcr.io/home-assistant/home-assistant:stable"
-    volumes:
-      - /home/homeassistant/.homeassistant:/config
-      - /etc/localtime:/etc/localtime:ro
-      - /run/dbus:/run/dbus:ro
-    restart: unless-stopped
-    privileged: true
-    network_mode: host
-	
-EOF
-
-sudo docker compose up -d
-
-
-
-
-echo "Installation terminée."
-EOF
-
-
+sudo chmode /home/pi/install-HomeAssistant.sh
+cd /home/pi/
+sudo ./install-HomeAssistant.sh
 echo_green "Install Docker Home Assistant...(DONE)"
