@@ -66,53 +66,44 @@ else
 fi
 
 # Vérifier si Docker est disponible
-echo "Vérifier si Docker est disponible..."
-sudo systemctl status docker
-sudo systemctl start docker
-sudo usermod -aG docker "${USER}"
-if [ -S /var/run/docker.sock ]; then
-    echo "Docker est disponible."
-else
-    echo "Docker n'est pas disponible. Assurez-vous que Docker est en cours d'exécution."
-    sudo mount --bind /var/run/docker.sock /mnt/chroot/var/run/docker.sock
-    sudo chroot /mnt/chroot
-    if [ -S /var/run/docker.sock ]; then
-      echo "Docker est disponible."
-    else
-      docker run -it --rm \
-      -v /var/run/docker.sock:/var/run/docker.sock \
-      -v $(which docker):/usr/bin/docker \
-      -v /usr/lib/docker:/usr/lib/docker \
-      -v /etc/docker:/etc/docker \
-      -v /lib/x86_64-linux-gnu/libc.so.6:/lib/x86_64-linux-gnu/libc.so.6 \
-      -v /lib/x86_64-linux-gnu/libpthread.so.0:/lib/x86_64-linux-gnu/libpthread.so.0 \
-      -v /lib/x86_64-linux-gnu/libdl.so.2:/lib/x86_64-linux-gnu/libdl.so.2 \
-      ubuntu:20.04
-    fi
+#!/bin/bash
 
+# Assurez-vous que Docker est disponible dans le chroot
+if [ ! -S /var/run/docker.sock ]; then
+    echo "Docker n'est pas disponible dans le chroot. Montons le socket Docker..."
+    sudo mount --bind /var/run/docker.sock /mnt/chroot/var/run/docker.sock
 fi
 
-
+# Entrez dans le chroot et exécutez les commandes
+sudo chroot /mnt/chroot /bin/bash -c "
+# Vérifier si Docker est disponible
+if [ -S /var/run/docker.sock ]; then
+    echo 'Docker est disponible.'
+else
+    echo 'Docker n\'est pas disponible. Assurez-vous que Docker est en cours d\'exécution.'
+    exit 1
+fi
 
 # Installation de Portainer
-echo "Installation de Portainer..."
+echo 'Installation de Portainer...'
+
 # Créer le volume pour Portainer
-echo "Création du volume pour Portainer..."
+echo 'Création du volume pour Portainer...'
 docker volume create portainer_data
 sleep 5
 
 # Télécharger et installer le conteneur Portainer Server
-echo "Installation de Portainer Server..."
+echo 'Installation de Portainer Server...'
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 
 # Vérifier si le conteneur Portainer Server a démarré
-echo "Vérification de l'installation de Portainer Server..."
+echo 'Vérification de l\'installation de Portainer Server...'
 sleep 5
 if docker ps | grep -q portainer; then
-  echo "Portainer Server a été installé avec succès."
+  echo 'Portainer Server a été installé avec succès.'
 else
-  echo "L'installation de Portainer Server a échoué."
-  #exit 1
+  echo 'L'installation de Portainer Server a échoué.'
+  exit 1
 fi
 
 # Exécutez la commande pour générer le mot de passe htpasswd
@@ -137,6 +128,10 @@ docker run -d \
   homeassistant/home-assistant:stable
 
 docker restart home-assistant
+"
+
+
+
 
 # Affichage de l'URL d'accès à Portainer Server
 echo "Pour accéder à Portainer Server, ouvrez un navigateur et allez à :"
