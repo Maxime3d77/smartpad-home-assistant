@@ -39,7 +39,7 @@ echo "2. Vérification de l'installation Docker..."
 sudo systemctl start docker
 sudo systemctl enable docker
 docker --version
-sudo docker --privileged run hello-world
+sudo docker run --privileged hello-world
 
 # Installation d'AppArmor
 echo "Installation d'AppArmor..."
