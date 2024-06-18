@@ -29,16 +29,13 @@ is_board_type() {
 }
 
 
-#echo_green "Move script..."
-#unpack /filesystem/home/pi/
-#echo_green "Move script...(DONE)"
+
 echo_green "Unpack file..."
-echo_green "Script Home Assistant..."
 unpack /filesystem/home/pi/ /home/pi/
 echo_green "Unpack file...(DONE)"
 
 echo_green "Install Docker Home Assistant..."
-sudo chmode /home/pi/install-HomeAssistant.sh
+sudo chmod /home/pi/install-HomeAssistant.sh
 cd /home/pi/
 sudo chmod +x install-HomeAssistant.sh
 sudo ./install-HomeAssistant.sh
