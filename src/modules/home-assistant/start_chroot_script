@@ -28,5 +28,6 @@ echo_green "Unpack file...(DONE)"
 echo_green "Install Docker Home Assistant..."
 sudo chmode /home/pi/install-HomeAssistant.sh
 cd /home/pi/
+sudo chmod +x install-HomeAssistant.sh
 sudo ./install-HomeAssistant.sh
 echo_green "Install Docker Home Assistant...(DONE)"
