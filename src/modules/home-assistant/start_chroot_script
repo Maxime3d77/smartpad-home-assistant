@@ -79,15 +79,7 @@ else
     if [ -S /var/run/docker.sock ]; then
       echo "Docker est disponible."
     else
-      docker run -it --rm \
-      -v /var/run/docker.sock:/var/run/docker.sock \
-      -v $("which docker"):/usr/bin/docker \
-      -v /usr/lib/docker:/usr/lib/docker \
-      -v /etc/docker:/etc/docker \
-      -v /lib/x86_64-linux-gnu/libc.so.6:/lib/x86_64-linux-gnu/libc.so.6 \
-      -v /lib/x86_64-linux-gnu/libpthread.so.0:/lib/x86_64-linux-gnu/libpthread.so.0 \
-      -v /lib/x86_64-linux-gnu/libdl.so.2:/lib/x86_64-linux-gnu/libdl.so.2 \
-      ubuntu:20.04
+      exit 1
     fi
 
 fi
