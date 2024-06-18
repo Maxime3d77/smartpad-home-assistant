@@ -71,7 +71,9 @@ echo "Installation de Portainer..."
 
 # Télécharger et installer le conteneur Portainer Server
 echo "Installation de Portainer Server..."
+echo "Curl..."
 curl -L https://downloads.portainer.io/ee2-19/portainer-agent-stack.yml -o portainer-agent-stack.yml
+echo "Docker stack..."
 docker stack deploy -c portainer-agent-stack.yml portainer
 
 # Vérifier si le conteneur Portainer Server a démarré
