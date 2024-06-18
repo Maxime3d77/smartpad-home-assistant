@@ -35,7 +35,6 @@ unpack /filesystem/home/pi/ /home/pi/
 echo_green "Unpack file...(DONE)"
 
 echo_green "Install Docker Home Assistant..."
-sudo chmod /home/pi/install-HomeAssistant.sh
 cd /home/pi/
 sudo chmod +x install-HomeAssistant.sh
 sudo ./install-HomeAssistant.sh
