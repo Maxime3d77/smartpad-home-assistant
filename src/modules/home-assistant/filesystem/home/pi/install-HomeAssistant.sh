@@ -68,18 +68,14 @@ fi
 
 # Installation de Portainer
 echo "Installation de Portainer..."
-# Créer le volume pour Portainer
-echo "Création du volume pour Portainer..."
-docker --privileged volume create portainer_data
-sleep 5
 
 # Télécharger et installer le conteneur Portainer Server
 echo "Installation de Portainer Server..."
-docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+curl -L https://downloads.portainer.io/ee2-19/portainer-agent-stack.yml -o portainer-agent-stack.yml
+docker stack deploy -c portainer-agent-stack.yml portainer
 
 # Vérifier si le conteneur Portainer Server a démarré
 echo "Vérification de l'installation de Portainer Server..."
-sleep 5
 if docker ps | grep -q portainer; then
   echo "Portainer Server a été installé avec succès."
 else
