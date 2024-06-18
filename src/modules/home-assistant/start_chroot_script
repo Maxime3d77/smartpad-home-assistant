@@ -39,7 +39,7 @@ echo "2. Vérification de l'installation Docker..."
 sudo systemctl start docker
 sudo systemctl enable docker
 docker --version
- sudo docker run hello-world
+sudo docker --privileged run hello-world
 
 # Installation d'AppArmor
 echo "Installation d'AppArmor..."
@@ -66,32 +66,11 @@ else
     fi
 fi
 
-# Vérifier si Docker est disponible
-echo "Vérifier si Docker est disponible..."
-sudo systemctl status docker
-sudo systemctl start docker
-sudo usermod -aG docker "${USER}"
-if [ -S /var/run/docker.sock ]; then
-    echo "Docker est disponible."
-else
-    echo "Docker n'est pas disponible. Assurez-vous que Docker est en cours d'exécution."
-    sudo mount --bind /var/run/docker.sock /mnt/chroot/var/run/docker.sock
-    sudo chroot /mnt/chroot
-    if [ -S /var/run/docker.sock ]; then
-      echo "Docker est disponible."
-    else
-      exit 1
-    fi
-
-fi
-
-
-
 # Installation de Portainer
 echo "Installation de Portainer..."
 # Créer le volume pour Portainer
 echo "Création du volume pour Portainer..."
-docker volume create portainer_data
+docker --privileged volume create portainer_data
 sleep 5
 
 # Télécharger et installer le conteneur Portainer Server
