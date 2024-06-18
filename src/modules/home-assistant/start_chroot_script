@@ -65,12 +65,33 @@ else
     fi
 fi
 
-# Check Docker
-echo "Check Docker..."
+# Vérifier si Docker est disponible
+echo "Vérifier si Docker est disponible..."
 sudo systemctl status docker
 sudo systemctl start docker
 sudo usermod -aG docker "${USER}"
-ls -l /var/run/docker.sock
+if [ -S /var/run/docker.sock ]; then
+    echo "Docker est disponible."
+else
+    echo "Docker n'est pas disponible. Assurez-vous que Docker est en cours d'exécution."
+    sudo mount --bind /var/run/docker.sock /mnt/chroot/var/run/docker.sock
+    sudo chroot /mnt/chroot
+    if [ -S /var/run/docker.sock ]; then
+      echo "Docker est disponible."
+    else
+      docker run -it --rm \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      -v $(which docker):/usr/bin/docker \
+      -v /usr/lib/docker:/usr/lib/docker \
+      -v /etc/docker:/etc/docker \
+      -v /lib/x86_64-linux-gnu/libc.so.6:/lib/x86_64-linux-gnu/libc.so.6 \
+      -v /lib/x86_64-linux-gnu/libpthread.so.0:/lib/x86_64-linux-gnu/libpthread.so.0 \
+      -v /lib/x86_64-linux-gnu/libdl.so.2:/lib/x86_64-linux-gnu/libdl.so.2 \
+      ubuntu:20.04
+    fi
+
+fi
+
 
 
 # Installation de Portainer
