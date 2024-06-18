@@ -34,7 +34,7 @@ is_board_type() {
 #echo_green "Move script...(DONE)"
 echo_green "Unpack file..."
 echo_green "Script Home Assistant..."
-unpack /filesystem/home/pi/install-HomeAssistant.sh /home/pi/install-HomeAssistant.sh pi
+unpack /filesystem/home/pi/ /home/pi/
 echo_green "Unpack file...(DONE)"
 
 echo_green "Install Docker Home Assistant..."
