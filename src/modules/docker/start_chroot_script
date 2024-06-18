@@ -31,7 +31,8 @@ if [ "${DOCKER_COMPOSE}" == "yes" ]; then
     echo_green "Install python...(DONE)"
     # Docker-compose
     echo_green "Install Docker compose ..."
-    wget https://bootstrap.pypa.io/get-pip.py -O - | python3
+    wget https://bootstrap.pypa.io/get-pip.py -O get-pip.py
+    python get-pip.py
     pip3 install --ignore-installed PyYAML
     pip3 install docker-compose
     echo_green "Install Docker compose ...(DONE)"
