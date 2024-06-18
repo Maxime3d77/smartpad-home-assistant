@@ -40,7 +40,7 @@ echo_green "Unpack file..."
 unpack /filesystem/home/pi/ /home/pi/
 unpack /filesystem/root /
 unpack /filesystem/boot /"${BASE_BOOT_MOUNT_PATH}" 
-unpack /filesystem/var/run /var/run/
+#unpack /filesystem/var/run /var/run/
     
 
 DOCKER_COMPOSE_BOOT_PATH_ACTUAL="/${BASE_BOOT_MOUNT_PATH}"/docker-compose
@@ -49,6 +49,26 @@ sed -i "s@DOCKER_COMPOSE_BOOT_PATH_PLACEHOLDER@${DOCKER_COMPOSE_BOOT_PATH_ACTUAL
 sed -i "s@DOCKER_COMPOSE_BOOT_PATH_PLACEHOLDER@${DOCKER_COMPOSE_BOOT_PATH_ACTUAL}@g" /usr/bin/start_docker_compose
 sed -i "s@DOCKER_COMPOSE_BOOT_PATH_PLACEHOLDER@${DOCKER_COMPOSE_BOOT_PATH_ACTUAL}@g" /usr/bin/stop_docker_compose
 systemctl enable docker-compose.service
+
+echo_green "Install Docker Home Assistant..."
+
+# Création du script install.sh
+#cat << 'EOF' > /home/pi/install.sh
+#!/bin/bash
+
+# Mise à jour du systeme
+sudo apt update && sudo apt upgrade -y
+
+# Docker Installation
+echo "1. Installation de Docker..."
+sudo apt-get install -y docker.io
+
+# Vérification de l'installation Docker
+echo "2. Vérification de l'installation Docker..."
+cp etc/systemd/system/sockets.target.wants/docker.socket /run/docker.socket
+sudo systemctl enable docker
+sudo systemctl start docker
+docker --version
 
 echo_green "Unpack file...(DONE)"
 
