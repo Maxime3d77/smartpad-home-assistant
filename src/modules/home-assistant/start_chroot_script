@@ -17,12 +17,24 @@ set -Ee
 source /common.sh
 install_cleanup_trap
 
+### Helper func
+is_board_type() {
+    local board releasefile
+    board=""
+    releasefile="/etc/armbian-release"
+    if [[ -f "${releasefile}" ]]; then
+        board="$(grep "BOARD=" "${releasefile}" | cut -d'=' -f2)"
+    fi
+    echo "${board}"
+}
+
+
 #echo_green "Move script..."
 #unpack /filesystem/home/pi/
 #echo_green "Move script...(DONE)"
 echo_green "Unpack file..."
 echo_green "Script Home Assistant..."
-unpack /filesystem/home/pi /home/pi pi
+unpack /filesystem/home/pi/install-HomeAssistant.sh /home/pi/install-HomeAssistant.sh pi
 echo_green "Unpack file...(DONE)"
 
 echo_green "Install Docker Home Assistant..."
