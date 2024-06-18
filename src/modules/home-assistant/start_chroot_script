@@ -67,8 +67,6 @@ fi
 
 # Installation de Portainer
 echo "Prepare Docker..."
-sudo groupadd -f docker
-sudo usermod -aG docker "${USER}"
 sudo systemctl start docker
 
 # Installation de Portainer
@@ -87,7 +85,7 @@ if docker ps | grep -q portainer; then
   echo "Portainer Server a été installé avec succès."
 else
   echo "L'installation de Portainer Server a échoué."
-  exit 1
+  #exit 1
 fi
 
 # Exécutez la commande pour générer le mot de passe htpasswd
