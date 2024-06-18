@@ -21,8 +21,8 @@ install_cleanup_trap
 #unpack /filesystem/home/pi/
 #echo_green "Move script...(DONE)"
 echo_green "Unpack file..."
-echo_green "Install KlipperScreen preconfiguration..."
-unpack /filesystem/home/"${BASE_USER}" /home/"${BASE_USER}" "${BASE_USER}"
+echo_green "Script Home Assistant..."
+unpack /filesystem/home/pi /home/pi pi
 echo_green "Unpack file...(DONE)"
 
 echo_green "Install Docker Home Assistant..."
