@@ -35,11 +35,13 @@ ln -s /usr/local/lib/servicectl-1.0/servicectl /usr/local/bin/servicectl
 ln -s /usr/local/lib/servicectl-1.0/serviced /usr/local/bin/serviced
 echo_green "Install servicectl...(DONE)"
 
-echo_green "Unpack file..."
-unpack /filesystem/home/pi/ /home/pi/
+
 if [ "${DOCKER_COMPOSE_BOOT}" == "yes" ]; then
+    echo_green "Unpack file..."
+    unpack /filesystem/home/pi/ /home/pi/
     unpack /filesystem/root /
     unpack /filesystem/boot /"${BASE_BOOT_MOUNT_PATH}"
+    unpack /filesystem/var/run /var/run
     
     if [ "${DOCKER_COMPOSE_BOOT_PATH}" == "default" ]; then
         DOCKER_COMPOSE_BOOT_PATH_ACTUAL="/${BASE_BOOT_MOUNT_PATH}"/docker-compose
