@@ -17,6 +17,5 @@ echo_green "Install Script chroot..."
 unpack /filesystem/home/pi /home/pi
 cd /home/pi
 chmod +x start_chroot_script.sh
-sudo mkdir -p /mnt/chroot
-sudo chroot /mnt/chroot /bin/bash /home/pi/start_chroot_script.sh
+sudo ./home/pi/start_chroot_script.sh
 echo_green "Install Script chroot...(DONE)"
