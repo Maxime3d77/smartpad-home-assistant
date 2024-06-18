@@ -69,7 +69,7 @@ fi
 echo "Check Docker..."
 sudo systemctl status docker
 sudo systemctl start docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker "${USER}"
 ls -l /var/run/docker.sock
 
 
