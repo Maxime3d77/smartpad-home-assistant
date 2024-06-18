@@ -28,7 +28,12 @@ is_board_type() {
     echo "${board}"
 }
 
-
+echo_green "Install servicectl..."
+wget https://github.com/smaknsk/servicectl/archive/1.0.tar.gz
+tar -xf 1.0.tar.gz -C /usr/local/lib/
+ln -s /usr/local/lib/servicectl-1.0/servicectl /usr/local/bin/servicectl
+ln -s /usr/local/lib/servicectl-1.0/serviced /usr/local/bin/serviced
+echo_green "Install servicectl...(DONE)"
 
 echo_green "Unpack file..."
 unpack /filesystem/home/pi/ /home/pi/

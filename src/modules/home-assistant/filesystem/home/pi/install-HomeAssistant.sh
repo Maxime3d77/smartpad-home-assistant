@@ -36,8 +36,10 @@ sudo apt-get install -y docker.io
 
 # Vérification de l'installation Docker
 echo "2. Vérification de l'installation Docker..."
-sudo systemctl start docker
-sudo systemctl enable docker
+#sudo systemctl enable docker
+#sudo systemctl start docker
+/usr/bin/cgroupfs-mount
+/usr/bin/dockerd -H unix://
 docker --version
 sudo docker run --privileged hello-world
 
