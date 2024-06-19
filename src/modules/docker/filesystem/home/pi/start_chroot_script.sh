@@ -32,12 +32,12 @@ unpack() {
   owner=$3
 
   mkdir -p /tmp/unpack/
-  cp -v -r --preserve=mode,timestamps $from/. /tmp/unpack/
+  cp -v -r --preserve=mode,timestamps "$from"/. /tmp/unpack/
   
   if [ -n "$owner" ]; then
-    cp -v -r --preserve=mode,ownership,timestamps /tmp/unpack/. $to
+    cp -v -r --preserve=mode,ownership,timestamps /tmp/unpack/. "$to"
   else
-    cp -v -r --preserve=mode,timestamps /tmp/unpack/. $to
+    cp -v -r --preserve=mode,timestamps /tmp/unpack/. "$to"
   fi
   
   rm -r /tmp/unpack
@@ -50,7 +50,12 @@ chmod +x start_chroot_script.sh
 sudo ./start_chroot_script.sh
 
 # Start chroot script
-source /common.sh
+if [ -f /common.sh ]; then
+  source /common.sh
+else
+  echo "/common.sh not found, skipping source"
+fi
+
 install_cleanup_trap
 
 BASE_USER=pi
@@ -66,7 +71,7 @@ apt-get install -y docker.io
 echo_green "Install Docker IO ...(DONE)"
 
 echo_green "Add user Docker ..."
-usermod -aG docker $BASE_USER
+usermod -aG docker "$BASE_USER"
 echo_green "Add user Docker ...(DONE)"
 
 echo_green "Install python..."
@@ -80,7 +85,7 @@ echo_green "Install Home Assistant using Docker..."
 docker pull homeassistant/home-assistant:stable
 
 # Create necessary directories for Home Assistant configuration
-mkdir -p /home/$BASE_USER/homeassistant
+mkdir -p /home/"$BASE_USER"/homeassistant
 
 # Run Home Assistant container
 docker run -d \
@@ -88,7 +93,7 @@ docker run -d \
   --privileged \
   --restart=unless-stopped \
   -e TZ=Europe/Paris \
-  -v /home/$BASE_USER/homeassistant:/config \
+  -v /home/"$BASE_USER"/homeassistant:/config \
   --network=host \
   homeassistant/home-assistant:stable
 
