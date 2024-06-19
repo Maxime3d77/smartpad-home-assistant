@@ -35,8 +35,6 @@ echo_green "Install python..."
 apt-get install -y python3 python3-distutils python3-dev python3-testresources gcc libffi-dev build-essential libssl-dev cargo python3-cryptography python3-bcrypt python3-pip
 echo_green "Install python...(DONE)"
     
-# Upgrade pip to the latest version
-pip3 install --upgrade pip
     
 # Install PyYAML ignoring pre-installed versions
 echo_green "Install PyYAML ..."
