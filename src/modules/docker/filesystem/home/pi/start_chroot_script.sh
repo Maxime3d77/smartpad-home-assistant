@@ -59,7 +59,7 @@ for i in {1..10}; do
     if docker info; then
         break
     fi
-    echo "Docker not ready yet, waiting ($i/10)..."
+    echo "Docker not ready yet, waiting (${i}/10)..."
     sleep 3
 done
 if ! docker info; then
