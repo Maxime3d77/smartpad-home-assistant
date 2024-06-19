@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# CustomPiOS module : docker
+# thanks CustomPiOS
 # Original script written by Damien DALY (https://github.com/MaitreDede/)
-# Changes by Guy Sheffer
+# Changes by Maxime3D77
 # GPL V3
 ########
 # shellcheck enable=require-variable-braces
@@ -55,6 +55,35 @@ sed -i "s@DOCKER_COMPOSE_BOOT_PATH_PLACEHOLDER@${DOCKER_COMPOSE_BOOT_PATH_ACTUAL
 sed -i "s@DOCKER_COMPOSE_BOOT_PATH_PLACEHOLDER@${DOCKER_COMPOSE_BOOT_PATH_ACTUAL}@g" /usr/bin/stop_docker_compose
 systemctl enable docker-compose.service
 echo_green "Unpack Docker file & service...(DONE)"
+
+# Create directories and docker-compose.yml file for Home Assistant
+echo_green "Setting up Home Assistant with Docker Compose..."
+sudo mkdir -p /home/pi/docker
+sudo mkdir -p /home/pi/docker/homeAssistant
+sudo cat << EOF > /home/pi/docker/homeAssistant/docker-compose.yml
+version: '3'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - /home/pi/homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+EOF
+
+# Set permissions for the created directories and files
+sudo chown -R pi:pi /home/pi/docker 
+
+# Start the Home Assistant container
+cd /home/pi/docker/homeAssistant
+docker-compose up -d
+echo_green "Home Assistant setup and started...(DONE)"
+
+
 
 #cleanup
 apt-get clean
