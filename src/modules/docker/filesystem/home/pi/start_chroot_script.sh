@@ -60,7 +60,7 @@ echo_green "Unpack Docker file & service...(DONE)"
 echo_green "Setting up Home Assistant with Docker Compose..."
 sudo mkdir -p /home/pi/docker
 sudo mkdir -p /home/pi/docker/homeAssistant
-sudo cat << EOF > /home/pi/docker/homeAssistant/docker-compose.yml
+cat << EOF > /home/pi/docker/homeAssistant/docker-compose.yml
 version: '3'
 services:
   homeassistant:
