@@ -40,6 +40,17 @@ echo_green "Install Docker compose ..."
 apt-get install -y docker-compose
 echo_green "Install Docker compose ...(DONE)"
 
+echo_green "Starting Docker service..."
+systemctl start docker
+systemctl enable docker
+echo_green "Docker service started and enabled to start on boot...(DONE)"
+
+echo_green "Verifying Docker installation..."
+docker info
+if [ $? -ne 0 ]; then
+    echo_red "Docker is not running correctly. Exiting..."
+fi
+echo_green "Docker installation verified...(DONE)"
 
 echo_green "Unpack Docker file & service..."
 unpack /filesystem/root /
