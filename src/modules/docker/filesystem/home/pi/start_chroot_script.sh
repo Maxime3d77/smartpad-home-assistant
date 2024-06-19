@@ -19,7 +19,7 @@ apt-get install -y docker.io
 echo_green "Install Docker IO ...(DONE)"
 
 echo_green "Add user Docker ..."
-usermod "${BASE_USER}" -aG docker
+usermod pi -aG docker
 echo_green "Add user Docker ...(DONE)"
 
 
