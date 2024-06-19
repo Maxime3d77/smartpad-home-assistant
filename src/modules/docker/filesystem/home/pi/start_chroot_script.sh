@@ -49,6 +49,7 @@ echo_green "Verifying Docker installation..."
 docker info
 if [ $? -ne 0 ]; then
     echo_red "Docker is not running correctly. Exiting..."
+    exit 1
 fi
 echo_green "Docker installation verified...(DONE)"
 
