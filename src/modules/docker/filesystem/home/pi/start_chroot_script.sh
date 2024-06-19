@@ -49,7 +49,7 @@ cd /home/pi
 chmod +x start_chroot_script.sh
 sudo ./start_chroot_script.sh
 
-# Start chroot script
+# Check if /common.sh exists and source it if it does
 if [ -f /common.sh ]; then
   source /common.sh
 else
