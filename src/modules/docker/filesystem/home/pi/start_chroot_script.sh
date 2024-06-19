@@ -50,6 +50,7 @@ chmod +x start_chroot_script.sh
 sudo ./start_chroot_script.sh
 
 # Check if /common.sh exists and source it if it does
+# shellcheck disable=SC1091
 if [ -f /common.sh ]; then
   source /common.sh
 else
