@@ -28,7 +28,7 @@ apt-get install -y python3 python3-distutils python3-dev python3-testresources g
 echo_green "Install python...(DONE)"
     
 # Upgrade pip to the latest version
-pip3 install --upgrade pip
+#pip3 install --upgrade pip
     
 # Install PyYAML ignoring pre-installed versions
 echo_green "Install PyYAML ..."
