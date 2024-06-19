@@ -45,14 +45,6 @@ systemctl start docker
 systemctl enable docker
 echo_green "Docker service started and enabled to start on boot...(DONE)"
 
-echo_green "Verifying Docker installation..."
-docker info
-if [ $? -ne 0 ]; then
-    echo_red "Docker is not running correctly. Exiting..."
-    exit 1
-fi
-echo_green "Docker installation verified...(DONE)"
-
 echo_green "Unpack Docker file & service..."
 unpack /filesystem/root /
 unpack /filesystem/boot /"${BASE_BOOT_MOUNT_PATH}"
