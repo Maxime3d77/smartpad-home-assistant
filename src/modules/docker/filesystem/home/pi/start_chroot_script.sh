@@ -56,8 +56,10 @@ echo_green "Docker service started and enabled to start on boot...(DONE)"
 # Wait for Docker to be ready
 echo_green "Waiting for Docker to start..."
 for i in {1..10}; do
-    docker info && break
-    echo "Docker not ready yet, waiting..."
+    if docker info; then
+        break
+    fi
+    echo "Docker not ready yet, waiting ($i/10)..."
     sleep 3
 done
 if ! docker info; then
