@@ -31,7 +31,7 @@ get_img_name() {
 
 DIST_VERSION="$(get_version)"
 BASE_ZIP_IMG="$(get_img_name)"
-DIST_NAME="YumiOS"
+DIST_NAME="HomeAssistant"
 
 # export Variables
 export DIST_NAME
