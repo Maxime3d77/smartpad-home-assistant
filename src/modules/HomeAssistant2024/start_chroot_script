@@ -5,12 +5,12 @@
 # GPL V3
 # shellcheck enable=require-variable-braces
 # Source error handling, leave this in place
-set -Ee
+#set -Ee
 
 # Source CustomPIOS common.sh
 # shellcheck disable=SC1091
-source /common.sh
-install_cleanup_trap
+#source /common.sh
+#install_cleanup_trap
 
 
 echo_green "Install Home Assistant..."
