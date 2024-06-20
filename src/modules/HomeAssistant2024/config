@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Shebang for better file detection
+#### Smartpad Specific Tweaks for Yumi SmartPad images
+####
+#### Written by SMaxime3D77
+#### Copyright 2024 - till today
+#### https://github.com/Maxime3D77
+####
+#### This File is distributed under GPLv3
+####
+
+# shellcheck disable=all
+
+[[ -n "$DOCKER_COMPOSE" ]] || DOCKER_COMPOSE=yes
+[[ -n "$DOCKER_ADD_USER_TO_GROUP" ]] || DOCKER_ADD_USER_TO_GROUP=yes
+[[ -n "$DOCKER_COMPOSE_BOOT" ]] || DOCKER_COMPOSE_BOOT=yes
+[[ -n "$DOCKER_COMPOSE_BOOT_PATH" ]] || DOCKER_COMPOSE_BOOT_PATH=default
+
