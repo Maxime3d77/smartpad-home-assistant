@@ -22,7 +22,7 @@ sudo ./start_chroot_script.sh
 
 BASE_USER=pi
 
-if [ -z "$BASE_USER" ]; then
+if [ -z "${BASE_USER}" ]; then
   echo "Base user is not set. Exiting."
   exit 1
 fi
@@ -33,7 +33,7 @@ apt-get install -y docker.io
 echo_green "Install Docker IO ...(DONE)"
 
 echo_green "Add user Docker ..."
-usermod -aG docker "$BASE_USER"
+usermod -aG docker "${BASE_USER}"
 echo_green "Add user Docker ...(DONE)"
 
 echo_green "Install python..."
@@ -47,7 +47,7 @@ echo_green "Install Home Assistant using Docker..."
 docker pull homeassistant/home-assistant:stable
 
 # Create necessary directories for Home Assistant configuration
-mkdir -p /home/"$BASE_USER"/homeassistant
+mkdir -p /home/"${BASE_USER}"/homeassistant
 
 # Run Home Assistant container
 docker run -d \
@@ -55,7 +55,7 @@ docker run -d \
   --privileged \
   --restart=unless-stopped \
   -e TZ=Europe/Paris \
-  -v /home/"$BASE_USER"/homeassistant:/config \
+  -v /home/"${BASE_USER}"/homeassistant:/config \
   --network=host \
   homeassistant/home-assistant:stable
 
