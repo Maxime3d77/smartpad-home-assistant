@@ -33,7 +33,7 @@ source /srv/homeassistant/bin/activate
 pip install --upgrade pip
 pip install --force-reinstall -v "cryptography==40.0.1"
 pip install wheel
-pip install homeassistant==2024.6.3
+pip install homeassistant
 EOF
 echo_green "CRÉATION DE L'ENVIRONNEMENT VIRTUEL...(TERMINÉE)"
 echo_green "Installation de Home Assistant...(TERMINÉE)"
