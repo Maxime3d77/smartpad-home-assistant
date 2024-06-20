@@ -26,17 +26,22 @@ sudo useradd -rm homeassistant -G dialout,gpio,i2c
 echo_green "Add User...(DONE)"
 
 echo_green "Install CREATE THE VIRTUAL ENVIRONMENT..."
-#sudo mkdir /srv/homeassistant
-#sudo chown homeassistant:homeassistant /srv/homeassistant
-cd /srv && sudo mkdir homeassistant && sudo chown homeassistant:homeassistant homeassistant
+#cd /srv && sudo mkdir homeassistant && sudo chown homeassistant:homeassistant homeassistant
+sudo mkdir /srv/homeassistant
+sudo chown homeassistant:homeassistant /srv/homeassistant
 sudo -u homeassistant -H -s
 cd /srv/homeassistant || exit
 python3 -m venv .
 #source /bin/activate
 source /srv/homeassistant/bin/activate
 pip install --force-reinstall -v "cryptography==40.0.1"
+echo_green "Install Whell..."
 python3 -m pip install wheel
-pip3 install homeassistant
+echo_green "Install Whell...(DONE)"
+echo_green "Install Home Assistant..."
+#pip3 install homeassistant
+pip3 install homeassistant==2024.6.3
+echo_green "Install Home Assistant...(DONE)"
 #python3 -m pip install homeassistant
 echo_green "Install CREATE THE VIRTUAL ENVIRONMENT...(DONE)"
 echo_green "Install Home Assistant...(DONE)"
