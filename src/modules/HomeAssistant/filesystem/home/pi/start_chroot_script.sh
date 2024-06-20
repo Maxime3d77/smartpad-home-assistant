@@ -2,12 +2,13 @@
 ########
 # shellcheck enable=require-variable-braces
 # Source error handling, leave this in place
-set -ex
+set -Ee
 
 # Source CustomPIOS common.sh
 # shellcheck disable=SC1091
 source /common.sh
 install_cleanup_trap
+
 
 echo_green "Install Script chroot..."
 
@@ -21,11 +22,6 @@ sudo ./start_chroot_script.sh
 
 
 BASE_USER=pi
-
-if [ -z "${BASE_USER}" ]; then
-  echo "Base user is not set. Exiting."
-  exit 1
-fi
 
 echo_green "Install Docker IO ..."
 apt-get update
