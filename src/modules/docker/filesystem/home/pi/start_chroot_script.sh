@@ -1,15 +1,6 @@
 #!/bin/bash
 set -e
 
-# Colors for echo
-echo_green() {
-  echo -e "\e[92m$1\e[0m"
-}
-
-# Function to install cleanup trap
-install_cleanup_trap() {
-  trap cleanup SIGINT SIGTERM
-}
 
 # Cleanup function
 cleanup() {
@@ -23,25 +14,7 @@ if ! command -v sudo &> /dev/null; then
 fi
 
 echo_green "Install Script chroot..."
-install_cleanup_trap
 
-# Unpack function
-unpack() {
-  from=$1
-  to=$2
-  owner=$3
-
-  mkdir -p /tmp/unpack/
-  cp -v -r --preserve=mode,timestamps "$from"/. /tmp/unpack/
-  
-  if [ -n "$owner" ]; then
-    cp -v -r --preserve=mode,ownership,timestamps /tmp/unpack/. "$to"
-  else
-    cp -v -r --preserve=mode,timestamps /tmp/unpack/. "$to"
-  fi
-  
-  rm -r /tmp/unpack
-}
 
 # Unpack home directory for pi user
 unpack /filesystem/home/pi /home/pi
@@ -57,7 +30,6 @@ else
   echo "/common.sh not found, skipping source"
 fi
 
-install_cleanup_trap
 
 BASE_USER=pi
 
