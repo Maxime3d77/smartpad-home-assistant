@@ -1,17 +1,13 @@
 #!/bin/bash
-set -e
+########
+# shellcheck enable=require-variable-braces
+# Source error handling, leave this in place
+set -ex
 
-
-# Cleanup function
-cleanup() {
-  echo "Cleanup"
-}
-
-# Ensure we have sudo
-if ! command -v sudo &> /dev/null; then
-  echo "This script requires sudo. Please install sudo and run again."
-  exit 1
-fi
+# Source CustomPIOS common.sh
+# shellcheck disable=SC1091
+source /common.sh
+install_cleanup_trap
 
 echo_green "Install Script chroot..."
 
@@ -22,13 +18,6 @@ cd /home/pi
 chmod +x start_chroot_script.sh
 sudo ./start_chroot_script.sh
 
-# Check if /common.sh exists and source it if it does
-# shellcheck disable=SC1091
-if [ -f /common.sh ]; then
-  source /common.sh
-else
-  echo "/common.sh not found, skipping source"
-fi
 
 
 BASE_USER=pi
