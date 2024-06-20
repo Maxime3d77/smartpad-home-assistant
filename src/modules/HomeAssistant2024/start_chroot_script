@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# CustomPiOS module : docker
-# Original script written by Damien DALY (https://github.com/MaitreDede/)
-# Changes by Guy Sheffer
+# Module CustomPiOS : docker
+# Script original écrit par Damien DALY (https://github.com/MaitreDede/)
+# Modifications par Guy Sheffer
 # GPL V3
 # shellcheck enable=require-variable-braces
-# Source error handling, leave this in place
+# Gestion des erreurs, laissez cette ligne en place
 #set -Ee
 
 # Source CustomPIOS common.sh
@@ -12,36 +12,28 @@
 source /common.sh
 #install_cleanup_trap
 
+echo_green "Installation de Home Assistant..."
 
-echo_green "Install Home Assistant..."
-
-echo_green "Install DEPENDENCIES..."
+echo_green "Installation des DÉPENDANCES..."
 sudo apt-get update
-sudo apt-get install -y python3 python3-dev python3-venv python3-pip bluez libffi-dev libssl-dev libjpeg-dev zlib1g-dev autoconf build-essential libopenjp2-7 libtiff6 libturbojpeg0-dev tzdata ffmpeg liblapack3 liblapack-dev libatlas-base-dev
-echo_green "Install DEPENDENCIES...(DONE)"
+sudo apt-get install -y python3 python3-dev python3-venv python3-pip bluez libffi-dev libssl-dev libjpeg-dev zlib1g-dev autoconf build-essential libopenjp2-7 libtiff5 libturbojpeg0-dev tzdata ffmpeg liblapack3 liblapack-dev libatlas-base-dev
+echo_green "Installation des DÉPENDANCES...(TERMINÉE)"
 
-
-echo_green "Add User..."
+echo_green "Ajout de l'utilisateur..."
 sudo useradd -rm homeassistant -G dialout,gpio,i2c
-echo_green "Add User...(DONE)"
+echo_green "Ajout de l'utilisateur...(TERMINÉ)"
 
-echo_green "Install CREATE THE VIRTUAL ENVIRONMENT..."
-#cd /srv && sudo mkdir homeassistant && sudo chown homeassistant:homeassistant homeassistant
-sudo mkdir /srv/homeassistant
+echo_green "CRÉATION DE L'ENVIRONNEMENT VIRTUEL..."
+sudo mkdir -p /srv/homeassistant
 sudo chown homeassistant:homeassistant /srv/homeassistant
-sudo -u homeassistant -H -s
+sudo -u homeassistant -H bash << EOF
 cd /srv/homeassistant || exit
 python3 -m venv .
-#source /bin/activate
 source /srv/homeassistant/bin/activate
+pip install --upgrade pip
 pip install --force-reinstall -v "cryptography==40.0.1"
-echo_green "Install Whell..."
-python3 -m pip install wheel
-echo_green "Install Whell...(DONE)"
-echo_green "Install Home Assistant..."
-#pip3 install homeassistant
-pip3 install homeassistant==2024.6.3
-echo_green "Install Home Assistant...(DONE)"
-#python3 -m pip install homeassistant
-echo_green "Install CREATE THE VIRTUAL ENVIRONMENT...(DONE)"
-echo_green "Install Home Assistant...(DONE)"
+pip install wheel
+pip install homeassistant==2024.6.3
+EOF
+echo_green "CRÉATION DE L'ENVIRONNEMENT VIRTUEL...(TERMINÉE)"
+echo_green "Installation de Home Assistant...(TERMINÉE)"
