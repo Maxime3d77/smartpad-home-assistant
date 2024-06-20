@@ -1,27 +1,23 @@
 #!/usr/bin/env bash
-# Module CustomPiOS : docker
-# Script original écrit par Damien DALY (https://github.com/MaitreDede/)
-# Modifications par Guy Sheffer
-# GPL V3
-# shellcheck enable=require-variable-braces
-# Gestion des erreurs, laissez cette ligne en place
-#set -Ee
 
 # Source CustomPIOS common.sh
 # shellcheck disable=SC1091
 source /common.sh
-#install_cleanup_trap
+
+set -Ee
+
+PACKAGES="python3 python3-dev python3-venv python3-pip bluez libffi-dev libssl-dev libjpeg-dev zlib1g-dev autoconf build-essential libopenjp2-7 libtiff6 libturbojpeg0-dev tzdata ffmpeg liblapack3 liblapack-dev libatlas-base-dev"
 
 echo_green "Installation de Home Assistant..."
 
 echo_green "Installation des DÉPENDANCES..."
 sudo apt-get update
-sudo apt-get install -y python3 python3-dev python3-venv python3-pip bluez libffi-dev libssl-dev libjpeg-dev zlib1g-dev autoconf build-essential libopenjp2-7 libtiff6 libturbojpeg0-dev tzdata ffmpeg liblapack3 liblapack-dev libatlas-base-dev
+sudo apt-get install -y $PACKAGES
 echo_green "Installation des DÉPENDANCES...(TERMINÉE)"
 
-echo_green "Ajout de l'utilisateur..."
+echo_green "Ajout de l'utilisateur homeassistant..."
 sudo useradd -rm homeassistant -G dialout,gpio,i2c
-echo_green "Ajout de l'utilisateur...(TERMINÉ)"
+echo_green "Ajout de l'utilisateur homeassistant...(TERMINÉ)"
 
 echo_green "CRÉATION DE L'ENVIRONNEMENT VIRTUEL..."
 sudo mkdir -p /srv/homeassistant
@@ -30,10 +26,13 @@ sudo -u homeassistant -H bash << EOF
 cd /srv/homeassistant || exit
 python3 -m venv .
 source /srv/homeassistant/bin/activate
+echo "upgrade pip"
 pip install --upgrade pip
-pip install --force-reinstall -v "cryptography==40.0.1"
-pip install wheel
-pip install homeassistant
+echo "rustup"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+echo "cbrypt ,crypto, wheel, homeassistant"
+pip install bcrypt cryptography wheel homeassistant
 EOF
 echo_green "CRÉATION DE L'ENVIRONNEMENT VIRTUEL...(TERMINÉE)"
+
 echo_green "Installation de Home Assistant...(TERMINÉE)"
