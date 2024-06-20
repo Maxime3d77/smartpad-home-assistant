@@ -37,6 +37,5 @@ source /srv/homeassistant/bin/activate
 python3 -m pip install wheel
 pip3 install homeassistant
 #python3 -m pip install homeassistant
-hass
 echo_green "Install CREATE THE VIRTUAL ENVIRONMENT...(DONE)"
 echo_green "Install Home Assistant...(DONE)"
