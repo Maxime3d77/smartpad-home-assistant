@@ -9,7 +9,7 @@
 
 # Source CustomPIOS common.sh
 # shellcheck disable=SC1091
-#source /common.sh
+source /common.sh
 #install_cleanup_trap
 
 
@@ -34,6 +34,7 @@ cd /srv/homeassistant || exit
 python3 -m venv .
 #source /bin/activate
 source /srv/homeassistant/bin/activate
+pip install --force-reinstall -v "cryptography==40.0.1"
 python3 -m pip install wheel
 pip3 install homeassistant
 #python3 -m pip install homeassistant
