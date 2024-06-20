@@ -30,7 +30,7 @@ echo_green "Install CREATE THE VIRTUAL ENVIRONMENT..."
 #sudo chown homeassistant:homeassistant /srv/homeassistant
 cd /srv && sudo mkdir homeassistant && sudo chown homeassistant:homeassistant homeassistant
 sudo -u homeassistant -H -s
-cd /srv/homeassistant
+cd /srv/homeassistant || exit
 python3 -m venv .
 #source /bin/activate
 source /srv/homeassistant/bin/activate
