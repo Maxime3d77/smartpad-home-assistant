@@ -45,8 +45,12 @@ else
         exit 1
     fi
 fi
-
+git clone https://github.com/docker/docker-ce.git
+make ENGINE_DIR=docker-ce/components/engine CLI_DIR=docker-ce/components/cli deb
+# curl --unix-socket /var/run/docker.sock http://localhost/version
+#--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock
 ln -s ~/.docker/run/docker.sock /var/run/docker.sock
+
 # Installation de Portainer
 echo "Installation de Portainer..."
 # Créer le volume pour Portainer
