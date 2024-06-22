@@ -13,7 +13,7 @@ BASE_USER=pi
 
 echo_green "Install Docker IO CE ..."
 apt-get update
-
+apt-get install -y curl
 # Add Docker’s official GPG key
 curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 
