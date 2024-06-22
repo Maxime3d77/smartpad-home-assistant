@@ -12,10 +12,18 @@ install_cleanup_trap
 
 BASE_USER=pi
 
-echo_green "Install Docker IO ..."
+echo_green "Install Docker IO CE ..."
 apt-get update
-apt-get install -y docker.io
-echo_green "Install Docker IO ...(DONE)"
+apt-get install -y docker.io docker-ce docker-ce-cli containerd.io
+echo_green "Run Hello ..."
+docker run --rm hello-world # test - you may skip
+echo_green "Run Hello ...(DONE)"
+echo_green "Docker version ...(DONE)"
+docker --version
+echo_green "Docker version ...(DONE)"
+echo_green "Install Docker IO CE ...(DONE)"
+
+
 
 echo_green "Add user Docker ..."
 usermod -aG docker "${BASE_USER}"
