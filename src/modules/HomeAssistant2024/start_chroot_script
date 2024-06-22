@@ -8,8 +8,6 @@ set -Ee
 
 echo_green "Installation de Home Assistant..."
 
-ec#!/bin/bash
-
 # Mise à jour du systeme
 sudo apt update && sudo apt upgrade -y
 
