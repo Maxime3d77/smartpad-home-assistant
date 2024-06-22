@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - "master"
+      - "devel"
+      - "docker-github-actions"
+      
+jobs:
+    compile:
+        name: Compile site assets
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repo
+            uses: Maxime3d77/dockerHA@v2
+          - name: Run the build process with Docker
+            uses: addnab/docker-run-action@v3
+            with:
+                image: Maxime3d77/dockerHA:latest
+                options: -v ${{ github.workspace }}:/home/pi/homeassistant
+                run: |
+                    composer install
+                    npm install
+                    npm run production
