@@ -25,7 +25,7 @@ BASE_BOOT_MOUNT_PATH="/boot/"
 # Compress not needed due compression done in workflow
 BASE_RELEASE_COMPRESS=no
 # Modules are valid for 32bit and 64bit images
-MODULES="base,pkgupgrade,udev_fix,armbian(armbian_net,yumios,docker)"
+MODULES="base,pkgupgrade,udev_fix,armbian(armbian_net,yumios,HomeAssistant2024)"
 
 # export Variables
 export DOWNLOAD_BASE_URL
