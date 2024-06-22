@@ -30,14 +30,16 @@ usermod -aG docker "${BASE_USER}"
 echo_green "Add user Docker ...(DONE)"
 
 echo_green "Install python..."
-apt-get install -y python3 python3-distutils python3-dev python3-testresources gcc libffi-dev build-essential libssl-dev cargo python3-cryptography python3-bcrypt python3-pip
+#apt-get install -y python3 python3-distutils python3-dev python3-testresources gcc libffi-dev build-essential libssl-dev cargo python3-cryptography python3-bcrypt python3-pip
+apt install python3-pip
+apt install python3-dev
+apt install libffi-dev
+apt install libssl-dev
 echo_green "Install python ...(DONE)"
 
 echo_green "Install Docker Compose ..."
-sudo curl -L "https://github.com/docker/compose/releases/download/2.28.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-docker-compose --version
-sudo curl -L https://raw.githubusercontent.com/docker/compose/2.28.0/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
+    pip3 install docker-compose
+    docker-compose --version
 echo_green "Install Docker Compose ...(DONE)"
 
 
