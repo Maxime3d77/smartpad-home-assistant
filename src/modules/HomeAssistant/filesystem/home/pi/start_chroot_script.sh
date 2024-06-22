@@ -10,17 +10,6 @@ source /common.sh
 install_cleanup_trap
 
 
-echo_green "Install Script chroot..."
-
-
-# Unpack home directory for pi user
-unpack /filesystem/home/pi /home/pi
-cd /home/pi
-chmod +x start_chroot_script.sh
-sudo ./start_chroot_script.sh
-
-
-
 BASE_USER=pi
 
 echo_green "Install Docker IO ..."
