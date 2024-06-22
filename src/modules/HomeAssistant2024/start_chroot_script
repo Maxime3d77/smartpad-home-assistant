@@ -46,6 +46,7 @@ else
     fi
 fi
 
+ln -s ~/.docker/run/docker.sock /var/run/docker.sock
 # Installation de Portainer
 echo "Installation de Portainer..."
 # Créer le volume pour Portainer
