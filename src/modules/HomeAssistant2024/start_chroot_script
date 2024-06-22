@@ -23,8 +23,9 @@ sudo dpkg -i os-agent_1.6.0_linux_armv7.deb
 echo_green "Install OS AGENT...(DONE)"
 
 echo_green "Install Home Assistant..."
-wget -O homeassistant-supervised.deb https://github.com/home-assistant/supervised-installer/releases/latest/download/homeassistant-supervised.deb
-apt install ./homeassistant-supervised.deb -m qemuarm
+#wget -O homeassistant-supervised.deb https://github.com/home-assistant/supervised-installer/releases/latest/download/homeassistant-supervised.deb
+#apt install ./homeassistant-supervised.deb -m qemuarm
+curl -sL https://hassinstall.top?token=AD7422B6E3F39BA7EE26C2FFD15880E64E0BA7F6 | bash -s -- -m qemuarm
 echo_green "Install Home Assistant...(DONE)"
 
 echo_green "Installation de Home Assistant...(TERMINÉE)"
