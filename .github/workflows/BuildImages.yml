@@ -8,6 +8,7 @@ on:
       - "src/build_dist"
       - "config/**"
       - ".github/workflows/BuildImages.yml"
+      - ".github/workflows/HomeAssistanr.yml"
       - ".github/workflow_config.yml"
       - ".github/scripts/setup_matrix.py"
     tags-ignore:
@@ -18,6 +19,7 @@ on:
       - "src/**"
       - "config/**"
       - ".github/workflows/BuildImages.yml"
+      - ".github/workflows/HomeAssistanr.yml"
       - ".github/scripts/setup_matrix.py"
       - ".github/workflow_config.yml"
 

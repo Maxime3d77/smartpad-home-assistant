@@ -1,12 +1,10 @@
 name: ci
-
 on:
   push:
     branches:
       - "master"
       - "devel"
       - "docker-github-actions"
-      
 jobs:
     compile:
         name: Compile site assets
