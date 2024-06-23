@@ -45,11 +45,26 @@ else
         exit 1
     fi
 fi
+
+# Cloner le dépôt Docker CE
 git clone https://github.com/docker/docker-ce.git
-make ENGINE_DIR=docker-ce/components/engine CLI_DIR=docker-ce/components/cli deb
-# curl --unix-socket /var/run/docker.sock http://localhost/version
-#--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock
+# Naviguer dans le répertoire du moteur
+cd docker-ce/components/engine
+# Assurez-vous que toutes les dépendances sont installées (cela peut varier selon votre système)
+sudo apt-get update
+sudo apt-get install -y build-essential
+# Construire le moteur Docker
+make
+# Naviguer dans le répertoire du CLI
+cd ../cli
+# Construire le CLI Docker
+make
+# Facultativement, vous pouvez également construire les paquets si la cible correcte est connue
+# cd ../packaging
+# make deb
+# Lier la socket Docker
 ln -s ~/.docker/run/docker.sock /var/run/docker.sock
+
 
 # Installation de Portainer
 echo "Installation de Portainer..."
