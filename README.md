@@ -55,7 +55,7 @@ sudo ip a
 
 Now connect to the Home Assistant interface using a browser:
 
-http://You_IP:8123
+http://Your_IP:8123
 
 
 <p align="center">
