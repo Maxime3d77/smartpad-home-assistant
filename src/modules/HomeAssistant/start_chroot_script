@@ -47,9 +47,10 @@ else
 fi
 
 
-mkdir home-assistant-packages
+mkdir -p home-assistant-packages
 cd home-assistant-packages
-apt-get download python3 python3-pip python3-venv libffi-dev libssl-dev
+sudo apt-get download python3 python3-pip python3-venv libffi-dev libssl-dev
+
 pip3 download homeassistant
 sudo cp home-assistant-packages/* /root/
 
