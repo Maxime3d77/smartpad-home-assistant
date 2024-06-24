@@ -66,10 +66,10 @@ then
     sudo systemctl start docker
 fi
 # Assurez-vous que vous avez les permissions nécessaires
-if ! groups "$USER" | grep -q '\bdocker\b'
+if ! groups ${$USER} | grep -q '\bdocker\b'
 then
-    echo "Adding "$USER" to the docker group."
-    sudo usermod -aG docker "$USER"
+    echo "Adding ${$USER} to the docker group."
+    sudo usermod -aG docker ${$USER}
     newgrp docker
 fi
 # Construire le moteur Docker
