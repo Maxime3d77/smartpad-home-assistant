@@ -6,7 +6,7 @@
 
 Download Balena Etcher: https://etcher.balena.io/#download-etcher
 
-Download Home Assistant image and unzip it:
+Download Home Assistant image and unzip it: https://github.com/Maxime3d77/smartpad-home-assistant/releases
 
 Start Balena Etcher
 
@@ -56,3 +56,8 @@ sudo ip a
 Now connect to the Home Assistant interface using a browser:
 
 http://You_IP:8123
+
+
+<p align="center">
+<img src="https://github.com/Maxime3d77/smartpad-home-assistant/blob/main/img/HA001.png" style="width:50%" >
+</p>
