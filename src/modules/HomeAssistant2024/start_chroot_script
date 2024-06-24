@@ -53,36 +53,7 @@ cd docker-ce/components/engine
 # Assurez-vous que toutes les dépendances sont installées
 sudo apt-get update
 sudo apt-get install -y build-essential
-# Vérifiez que Docker est installé
-if ! command -v docker &> /dev/null
-then
-    echo "Docker could not be found, please install Docker."
-    exit
-fi
-# Vérifiez si le démon Docker est en cours d'exécution
-if ! sudo systemctl is-active --quiet docker
-then
-    echo "Docker daemon is not running, starting Docker."
-    sudo systemctl start docker
-fi
-# Assurez-vous que vous avez les permissions nécessaires
-if ! groups ${$USER} | grep -q '\bdocker\b'
-then
-    echo "Adding ${$USER} to the docker group."
-    sudo usermod -aG docker ${$USER}
-    newgrp docker
-fi
-# Construire le moteur Docker
-make
-# Naviguer dans le répertoire du CLI
-cd ../cli
-# Construire le CLI Docker
-make
-# Facultativement, vous pouvez également construire les paquets si la cible correcte est connue
-# cd ../packaging
-# make deb
-# Lier la socket Docker
-ln -s ~/.docker/run/docker.sock /var/run/docker.sock
+
 
 
 
