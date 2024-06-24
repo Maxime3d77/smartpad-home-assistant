@@ -25,7 +25,7 @@ Select you sd support:
 
 Flash SD:
 <p align="center">
-<img src="https://github.com/Maxime3d77/smartpad-home-assistant/blob/main/img/Balena004.png" style="width:50%" >
+<img src="https://github.com/Maxime3d77/smartpad-home-assistant/blob/main/img/balena004.png" style="width:50%" >
 </p>
 
 # Wifi
