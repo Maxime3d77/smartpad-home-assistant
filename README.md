@@ -11,16 +11,22 @@ Download Home Assistant image and unzip it:
 Start Balena Etcher
 
 Select your img file:
+<p align="center">
 <img src="https://github.com/Maxime3d77/smartpad-home-assistant/blob/main/img/Balena001.png" style="width:50%" >
-
+</p>
 
 Select you sd support:
-<img src="https://github.com/Maxime3d77/smartpad-home-assistant/blob/main/img/Balena002.png" style="width:50%" >
-
-<img src="https://github.com/Maxime3d77/smartpad-home-assistant/blob/main/img/Balena003.png" style="width:50%" >
+<p align="center">
+<img src="https://github.com/Maxime3d77/smartpad-home-assistant/blob/main/img/balena002.png" style="width:50%" >
+</p>
+<p align="center">
+<img src="https://github.com/Maxime3d77/smartpad-home-assistant/blob/main/img/balena003.png" style="width:50%" >
+</p>
 
 Flash SD:
+<p align="center">
 <img src="https://github.com/Maxime3d77/smartpad-home-assistant/blob/main/img/Balena004.png" style="width:50%" >
+</p>
 
 # Wifi
 
