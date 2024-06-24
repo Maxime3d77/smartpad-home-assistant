@@ -51,6 +51,7 @@ mkdir -p home-assistant-packages
 cd home-assistant-packages
 sudo apt-get download python3 python3-pip python3-venv libffi-dev libssl-dev
 
+
 pip3 download homeassistant
 sudo cp home-assistant-packages/* /root/
 
