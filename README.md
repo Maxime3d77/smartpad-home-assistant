@@ -6,7 +6,7 @@
 
 Download Balena Etcher: https://etcher.balena.io/#download-etcher
 
-Download Home Assistant image and unzip it: https://github.com/Maxime3d77/smartpad-home-assistant/releases
+Download Home Assistant image and unzip it: [a link](https://github.com/Maxime3d77/smartpad-home-assistant/releases)
 
 Start Balena Etcher
 
